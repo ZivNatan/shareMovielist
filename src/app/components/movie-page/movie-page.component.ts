@@ -40,7 +40,6 @@ export class MoviePageComponent implements OnInit {
   ngOnInit(): void {
     if (this.activatedRoute.queryParams){
      this.activatedRoute.queryParams.subscribe(res => {
-
         this.id = res.id;
         this.getAllData(this.id);
       });
@@ -48,6 +47,7 @@ export class MoviePageComponent implements OnInit {
     }
   }
   getAllData(id: string): void{
+
     this.showLoader = true;
     forkJoin([this.moviesService.getMovie(id), this.moviesService.getCrawAndCast(id)]).subscribe(res => {
         this.movie = res[0];

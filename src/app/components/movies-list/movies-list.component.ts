@@ -15,6 +15,7 @@ export class MoviesListComponent implements OnInit {
   list = [];
   searchText = '';
   lastSearch = '';
+  showLoader = false;
   ngOnInit(): void {
 
     this.activatedRoute.queryParams.subscribe(res => {
@@ -43,11 +44,14 @@ export class MoviesListComponent implements OnInit {
   }
   search(): void {
     if (this.searchText && this.searchText.length >= 3 && this.searchText !== this.lastSearch ){
-        this.moviesService.getMovies(this.searchText).subscribe(res => {
+      this.showLoader = true;
+      this.moviesService.getMovies(this.searchText).subscribe(res => {
             this.list = res.results;
-            console.log('LIST: ', this.list);
+            this.lastSearch = this.searchText;
+            this.showLoader = false;
         },
         err => {
+          this.showLoader = false;
           console.error(err);
         });
 

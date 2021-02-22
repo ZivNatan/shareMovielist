@@ -16,3 +16,15 @@
     align-items: center;
   }
 }
+
+.loader {
+  position: absolute;
+  left: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../assets/sample.gif");
+  background-size: 200px 200px;
+}

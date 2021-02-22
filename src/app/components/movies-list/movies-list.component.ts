@@ -21,7 +21,6 @@ export class MoviesListComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(res => {
       this.searchText = res.search;
       this.search();
-
     });
 
 

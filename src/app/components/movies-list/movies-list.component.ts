@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from 'src/app/services/movies.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movies-list',
@@ -16,6 +18,7 @@ export class MoviesListComponent implements OnInit {
   searchText = '';
   lastSearch = '';
   showLoader = false;
+  private subject: Subject<string> = new Subject();
   ngOnInit(): void {
 
     this.activatedRoute.queryParams.subscribe(res => {
@@ -23,8 +26,17 @@ export class MoviesListComponent implements OnInit {
       this.search();
     });
 
+    this.subject.pipe(debounceTime(300)).subscribe(() => {
+      this.search();
+    });
+
 
   }
+  upadateList(): void {
+
+      this.subject.next(this.searchText);
+  }
+
   copy(): void{
     let url = window.location.href;
     if (url.indexOf('search') === -1){
@@ -41,6 +53,7 @@ export class MoviesListComponent implements OnInit {
   movieClicked(movieId: string): void {
     this.router.navigate(['/movie'], { queryParams: {id: movieId } });
   }
+
   search(): void {
     if (this.searchText && this.searchText.length >= 3 && this.searchText !== this.lastSearch ){
       this.showLoader = true;

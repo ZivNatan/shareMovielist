@@ -1,0 +1,21 @@
+<div class="movies-list-container">
+<div class="search-container">
+    <input class="input-search"  [(ngModel)]="searchText"  type="text" > 
+    <div (click)="search()" class="btn">Search</div>
+    <div (click)="copy()" class="btn">Copy</div>
+
+</div>
+ 
+
+    <div class="list-result">
+            <div class="movie" *ngFor="let movie of list; trackBy:trackByMethod" (click)="movieClicked(movie.id)">
+                <div class="poster"> <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"></div>
+                 <div class="details">
+                        <div class="year">{{movie.release_date}}</div>
+                        <div class="Name">{{movie.title}}</div>
+                        <div class="text">{{movie.overview}}</div>
+                </div>
+            </div>
+    </div>
+
+</div>

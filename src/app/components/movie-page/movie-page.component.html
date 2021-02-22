@@ -1,0 +1,34 @@
+<div class="movie-page">
+<div class="loader" *ngIf=showLoader>
+    Loader
+</div>
+    <div class="movie-title section">
+       <h2> {{movie.original_title}}</h2>
+    </div>
+    <div class="movie-poster section">
+       <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"> 
+       <div class="movie-summary section">
+        {{movie.overview}}
+     </div>
+    </div>
+ 
+    <div class="movie-release-date">
+     <span class="title">Date:</span>   {{movie.release_date | date : "MMM d, y"}}
+    </div>
+    <div class="movie-rating section">
+        <span class="title">Rating:</span> {{movie.popularity}}
+    </div>
+    <div class="movie-diractors section">
+        <div class="title">Diractors: </div>
+        <div class="list" *ngFor="let pc of movie.production_companies">
+            {{pc.name}}
+        </div>
+    </div>
+    <div class="movie-actors section">
+        <div class="title">Actors: </div>
+        <div class="list" *ngFor="let actor of extraData.cast">
+            {{actor.original_name}}
+        </div>
+  
+    </div>
+</div>

@@ -1,0 +1,32 @@
+.movie-page {
+  width: 100%;
+}
+.movie-title {
+  text-align: center;
+}
+.movie-poster {
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.loader {
+  position: absolute;
+}
+img {
+  margin: auto;
+}
+.movie-summary {
+  margin: 25px auto;
+  //   width: 300px;
+}
+.section {
+  margin: 10px auto;
+}
+.title {
+  font-weight: bold;
+}
+.list {
+  padding-left: 25px;
+}

@@ -11,20 +11,14 @@
     width: 100%;
     background-color: black;
     color: #fff;
-    padding-left: 15px;
+    padding-left: 25px;
     display: flex;
     align-items: center;
   }
-}
-
-.loader {
-  position: absolute;
-  left: calc(50% - 100px);
-  width: 200px;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url("../assets/sample.gif");
-  background-size: 200px 200px;
+  .content {
+    overflow: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }

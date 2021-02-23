@@ -1,14 +1,23 @@
 .movies-list-container {
-  padding: 50px;
+  margin-top: 50px;
   .search-container {
     display: flex;
+    margin-top: 5px;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    padding-left: 10px;
   }
   .input-search {
-    width: 275px;
-    margin-left: 10px;
+    width: 265px;
+    height: 25px;
+    padding-left: 7px;
+    border: 2px solid black;
+    border-radius: 5px;
   }
   .list-result {
     overflow: auto;
+    position: relative;
   }
   .btn {
     width: 75px;
@@ -38,11 +47,16 @@
   }
   .poster {
     height: 100%;
-    width: 200px;
+    max-width: 200px;
+    min-width: 75px;
     img {
       max-width: 100%;
       max-height: 100%;
+      border-radius: 5px;
     }
+  }
+  .name {
+    font-weight: bold;
   }
   .details {
     width: 100%;

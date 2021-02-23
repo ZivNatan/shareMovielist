@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from 'src/app/services/movies.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -9,6 +9,7 @@ import { debounceTime } from 'rxjs/operators';
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.scss']
 })
+
 export class MoviesListComponent implements OnInit {
 
   constructor(private moviesService: MoviesService,
@@ -19,8 +20,8 @@ export class MoviesListComponent implements OnInit {
   lastSearch = '';
   showLoader = false;
   private subject: Subject<string> = new Subject();
-  ngOnInit(): void {
 
+  ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(res => {
       this.searchText = res.search;
       this.search();
@@ -29,11 +30,9 @@ export class MoviesListComponent implements OnInit {
     this.subject.pipe(debounceTime(300)).subscribe(() => {
       this.search();
     });
-
-
   }
-  upadateList(): void {
 
+  upadateList(): void {
       this.subject.next(this.searchText);
   }
 
@@ -50,6 +49,7 @@ export class MoviesListComponent implements OnInit {
     document.execCommand('copy');
     document.body.removeChild(el);
   }
+
   movieClicked(movieId: string): void {
     this.router.navigate(['/movie'], { queryParams: {id: movieId } });
   }
@@ -58,6 +58,7 @@ export class MoviesListComponent implements OnInit {
     if (this.searchText && this.searchText.length >= 3 && this.searchText !== this.lastSearch ){
       this.showLoader = true;
       this.moviesService.getMovies(this.searchText).subscribe(res => {
+            // TO DO: make 'this.list' to Observable and add async pipe in the HTML for better performance
             this.list = res.results;
             this.lastSearch = this.searchText;
             this.showLoader = false;
@@ -66,11 +67,9 @@ export class MoviesListComponent implements OnInit {
           this.showLoader = false;
           console.error(err);
         });
-
     }
-
-
   }
+
   trackByMethod(index: number, el: any): number {
     return el.id;
   }

@@ -46,15 +46,14 @@ export class MoviePageComponent implements OnInit {
 
     }
   }
-  getAllData(id: string): void{
 
+  getAllData(id: string): void{
     this.showLoader = true;
     forkJoin([this.moviesService.getMovie(id), this.moviesService.getCrawAndCast(id)]).subscribe(res => {
         this.movie = res[0];
         this.extraData = res[1];
         this.showLoader = false;
     });
-
   }
 }
 

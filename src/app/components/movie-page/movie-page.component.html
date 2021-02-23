@@ -1,7 +1,4 @@
-<div class="movie-page">
-<div class="loader" *ngIf="showLoader">
-
-</div>
+<div class="movie-page" *ngIf="!showLoader">
     <div class="movie-title section">
        <h2> {{movie.original_title}}</h2>
     </div>
@@ -12,7 +9,7 @@
      </div>
     </div>
  
-    <div class="movie-release-date">
+    <div class="movie-release-date section">
      <span class="title">Date:</span>   {{movie.release_date | date : "MMM d, y"}}
     </div>
     <div class="movie-rating section">
@@ -29,6 +26,7 @@
         <div class="list" *ngFor="let actor of extraData.cast">
             {{actor.original_name}}
         </div>
-  
     </div>
+</div>
+<div class="loader" *ngIf="showLoader">
 </div>

@@ -1,24 +1,23 @@
-<div class="movies-list-container">
-<div class="search-container">
-    <input class="input-search"  [(ngModel)]="searchText"  (keyup)="upadateList()" type="text" > 
-    <!-- <div (click)="search()" class="btn">Search</div> -->
-    <div (click)="copy()" class="btn">Copy</div>
+<div class="movies-list-container" >
+    <div class="search-container">
+        <input class="input-search"  [(ngModel)]="searchText"  (keyup)="upadateList()" type="text" > 
+        <!-- <div (click)="search()" class="btn">Search</div> -->
+        <div (click)="copy()" class="btn">Copy</div>
 
-</div>
- 
-
+    </div>
     <div class="list-result">
+        <div class="loader" *ngIf="showLoader">
+        </div>
+        <!-- TO DO: add | async -->
             <div class="movie" *ngFor="let movie of list; trackBy:trackByMethod"  (click)="movieClicked(movie.id)">
                 <div class="poster"> <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"></div>
-                 <div class="details">
+                    <div class="details">
+                        <div class="name">{{movie.title}}</div>
                         <div class="year">{{movie.release_date}}</div>
-                        <div class="Name">{{movie.title}}</div>
-                        <div class="text">{{movie.overview}}</div>
+                        <div class="text" *ngIf="movie.overview">{{movie.overview}}</div>
                 </div>
             </div>
     </div>
 
 </div>
-<div class="loader" *ngIf="showLoader">
 
-</div>
